@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Gaming Side Hustle Blueprint</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050805;
+      color: #fff;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .page {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(160,255,0,.22), transparent 35%),
+        radial-gradient(circle at top right, rgba(0,160,255,.18), transparent 30%),
+        linear-gradient(180deg, #020302 0%, #071007 45%, #020302 100%);
+    }
+    .container { width: min(1180px, 94%); margin: 0 auto; }
+    .hero {
+      min-height: 90vh;
+      padding: 34px 0 50px;
+      display: grid;
+      align-items: center;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .badge {
+      display: inline-block;
+      border: 1px solid #a8ff00;
+      color: #b7ff20;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: rgba(168,255,0,.08);
+      box-shadow: 0 0 20px rgba(168,255,0,.18);
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: .92;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+      text-shadow: 0 0 28px rgba(168,255,0,.2);
+    }
+    h1 span { color: #a8ff00; }
+    .subhead {
+      max-width: 680px;
+      color: #d7ddd2;
+      font-size: clamp(17px, 2vw, 22px);
+      margin-bottom: 26px;
+    }
+    .bullets { display: grid; gap: 10px; margin-bottom: 28px; max-width: 650px; }
+    .bullet { display: flex; gap: 10px; color: #eef6e8; font-weight: 700; }
+    .check { color: #a8ff00; font-weight: 900; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 14px;
+      padding: 18px 28px;
+      background: linear-gradient(180deg, #d7ff20, #80c900);
+      color: #071000;
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      box-shadow: 0 0 26px rgba(168,255,0,.45), inset 0 2px 0 rgba(255,255,255,.45);
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(168,255,0,.65); }
+    .micro { color: #bccab5; font-size: 13px; }
+    .hero-art {
+      position: relative;
+      min-height: 520px;
+      border-radius: 32px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(168,255,0,.22);
+      box-shadow: 0 0 55px rgba(168,255,0,.13);
+      display: grid;
+      place-items: center;
+      padding: 25px;
+    }
+    .hero-art img { max-width: 100%; height: auto; filter: drop-shadow(0 0 24px rgba(168,255,0,.45)); }
+    .trust-bar {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .trust-item, .card {
+      border: 1px solid rgba(168,255,0,.25);
+      background: rgba(6,12,6,.72);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: inset 0 0 22px rgba(168,255,0,.05);
+    }
+    section { padding: 64px 0; }
+    .section-title {
+      text-align: center;
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title span { color: #a8ff00; }
+    .section-subtitle {
+      text-align: center;
+      color: #c8d2c1;
+      max-width: 760px;
+      margin: 0 auto 34px;
+      font-size: 18px;
+    }
+    .learn-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .card h3 { color: #a8ff00; margin-bottom: 8px; font-size: 20px; }
+    .card p { color: #d8dfd3; }
+    .graphic-section img {
+      width: 100%;
+      border-radius: 24px;
+      border: 1px solid rgba(168,255,0,.25);
+      box-shadow: 0 0 50px rgba(168,255,0,.18);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+    .single-offer {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .single-offer .feature-list {
+      max-width: 470px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    .price-card {
+      border: 1px solid rgba(168,255,0,.3);
+      background: linear-gradient(180deg, rgba(13,26,13,.95), rgba(3,5,3,.95));
+      border-radius: 24px;
+      padding: 26px;
+      position: relative;
+    }
+    .price-card.featured {
+      transform: scale(1.04);
+      border-color: #a8ff00;
+      box-shadow: 0 0 45px rgba(168,255,0,.35);
+    }
+    .popular {
+      display: inline-block;
+      background: #a8ff00;
+      color: #071000;
+      font-weight: 1000;
+      padding: 7px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .price { font-size: 64px; font-weight: 1000; color: #a8ff00; line-height: 1; }
+    .retail { color: #bfc9ba; margin: 10px 0 18px; }
+    .feature-list { list-style: none; display: grid; gap: 10px; margin: 18px 0 22px; }
+    .feature-list li { color: #e9efe5; }
+    .notice {
+      border: 1px solid rgba(255,215,0,.35);
+      background: rgba(255,215,0,.08);
+      padding: 18px;
+      border-radius: 18px;
+      color: #fff5bf;
+      margin-top: 24px;
+      text-align: center;
+    }
+    .faq-grid { max-width: 900px; margin: 0 auto; display: grid; gap: 14px; }
+    details {
+      border: 1px solid rgba(168,255,0,.25);
+      background: rgba(6,12,6,.75);
+      border-radius: 16px;
+      padding: 18px 20px;
+    }
+    summary { cursor: pointer; font-weight: 900; color: #fff; }
+    details p { margin-top: 10px; color: #cbd6c5; }
+    footer { padding: 36px 0; color: #9ca894; text-align: center; font-size: 14px; }
+    .sticky-cta {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: rgba(3,5,3,.94);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(168,255,0,.25);
+      padding: 10px 14px;
+      display: none;
+      z-index: 50;
+    }
+    .sticky-cta .btn { width: 100%; padding: 14px; }
+    @media (max-width: 860px) {
+      .hero-grid, .learn-grid, .pricing-grid, .trust-bar { grid-template-columns: 1fr; }
+      .hero-art { min-height: auto; }
+      .price-card.featured { transform: none; }
+      .sticky-cta { display: block; }
+      body { padding-bottom: 74px; }
+    }
+  .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.82);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 20px;
+    }
+    .modal-backdrop.active { display: flex; }
+    .downsell-modal {
+      width: min(560px, 94vw);
+      border: 2px solid #a8ff00;
+      border-radius: 26px;
+      background: radial-gradient(circle at top, rgba(168,255,0,.22), transparent 38%), #050805;
+      box-shadow: 0 0 70px rgba(168,255,0,.35);
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: transparent;
+      border: 0;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+    }
+    .downsell-modal h2 {
+      font-size: clamp(30px, 5vw, 52px);
+      text-transform: uppercase;
+      line-height: .95;
+      margin-bottom: 12px;
+    }
+    .downsell-modal h2 span { color: #a8ff00; }
+    .downsell-price {
+      font-size: 76px;
+      font-weight: 1000;
+      color: #a8ff00;
+      line-height: 1;
+      margin: 12px 0;
+    }
+    .downsell-modal p { color: #d8dfd3; margin-bottom: 18px; }
+    .downsell-modal .small-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: #aab5a3;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">The Complete Beginner System</div>
+          <h1>Turn Playtime Into <span>Real Rewards</span></h1>
+          <p class="subhead">A beginner-friendly blueprint designed to help you understand reward gaming platforms, avoid common mistakes, and start with a simple action plan.</p>
+          <div class="bullets">
+            <div class="bullet"><span class="check">✓</span> Learn how reward gaming ecosystems work</div>
+            <div class="bullet"><span class="check">✓</span> Discover beginner-friendly platforms and offer types</div>
+            <div class="bullet"><span class="check">✓</span> Stay organized with checklists, tracking tips, and quick-start resources</div>
+          </div>
+          <div class="cta-row">
+            <a class="btn" href="#pricing">Get Instant Access Now</a>
+            <span class="micro">One-time payment • Instant digital access</span>
+          </div>
+          <div class="trust-bar">
+            <div class="trust-item">⚡ Instant Access</div>
+            <div class="trust-item">🔒 Secure Checkout</div>
+            <div class="trust-item">🎮 Beginner Friendly</div>
+          </div>
+        </div>
+        <div class="hero-art">
+          <!-- MAIN EBOOK COVER PLACEMENT -->
+          <!-- Replace image below with your ebook cover if filename changes -->
+          <img src="assets/main-ebook-cover-v1.png" alt="The Gaming Side Hustle Blueprint ebook cover" />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">What You'll <span>Learn</span></h2>
+        <p class="section-subtitle">Simple, practical guidance for beginners who want to understand reward gaming without drowning in hype.</p>
+        <div class="learn-grid">
+          <div class="card"><h3>Reward Platforms</h3><p>Understand how platforms like Swagbucks, InboxDollars, ySense, and Mistplay fit into the reward ecosystem.</p></div>
+          <div class="card"><h3>Offer Types</h3><p>Learn the difference between install offers, level milestones, time-limited offers, and higher-effort opportunities.</p></div>
+          <div class="card"><h3>Beginner Mistakes</h3><p>Avoid wasting time by learning what not to chase and how to stay organized from the start.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+
+        <!-- FULL BUNDLE IMAGE PLACEMENT -->
+        <!-- Recommended image: full-bundle-layout-v1.png -->
+        <div style="margin-bottom:40px; text-align:center;">
+          <img src="assets/full-funnel-layout-v1.png" alt="Full Bundle Display" style="width:100%; max-width:1000px; border-radius:24px; border:1px solid rgba(168,255,0,.25); box-shadow:0 0 50px rgba(168,255,0,.18);" />
+        </div>
+
+        <h2 class="section-title">Get The <span>Complete Bundle</span></h2>
+        <p class="section-subtitle">Start with the full $5 bundle first. If someone tries to leave, the page will offer the $3 downsell, then the $1 quick-start offer.</p>
+
+        <div class="price-card featured single-offer">
+          <span class="popular">Best Value</span>
+          <h3>Complete Gaming Side Hustle Bundle</h3>
+          <div class="price">$5</div>
+          <p class="retail">Retail Value: $84+</p>
+          <ul class="feature-list">
+            <li>✓ Main Blueprint</li>
+            <li>✓ Top 10 Highest Paying Game Offer Types</li>
+            <li>✓ First Dollar Fast-Start Checklist</li>
+            <li>✓ Reward Gaming Tracking Tips</li>
+            <li>✓ Beginner Mistakes Quick Reference Sheet</li>
+            <li>✓ Platform Quick Access Hub</li>
+          </ul>
+          <a class="btn" href="YOUR_5_DOLLAR_CHECKOUT_LINK">Get Complete Bundle For $5</a>
+        </div>
+
+        <div class="notice">Digital Access Notice: Due to the instant-access nature of digital products, all sales are considered final once access has been delivered.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <!-- FAQ IMAGE PLACEMENT -->
+        <!-- Replace faq-section-image-v1.png with your actual FAQ graphic filename -->
+        <div style="text-align:center; margin-bottom:30px;">
+          <img src="assets/faq-section-image-v1.png" alt="Frequently Asked Questions" style="width:100%; max-width:1000px; border-radius:24px; border:1px solid rgba(168,255,0,.25); box-shadow:0 0 50px rgba(168,255,0,.18);" />
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">© The Gaming Side Hustle Blueprint. Educational digital product. Results vary.</div>
+    </footer>
+  </main>
+
+  <div class="sticky-cta">
+    <a class="btn" href="#pricing">Get Complete Bundle For $5</a>
+  </div>
+
+  <div class="modal-backdrop" id="downsell3">
+    <div class="downsell-modal">
+      <button class="modal-close" onclick="closeDownsell('downsell3')">×</button>
+      <h2>Wait! Try The <span>Starter Bundle</span></h2>
+      <div class="downsell-price">$3</div>
+      <p>If the full bundle feels like too much right now, unlock the Starter Bundle with the main blueprint, Top 10 guide, and Fast-Start checklist.</p>
+      <a class="btn" href="YOUR_3_DOLLAR_CHECKOUT_LINK">Get Starter Bundle For $3</a>
+      <br />
+      <span class="small-link" onclick="showSecondDownsell()">No thanks, I still want to leave.</span>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="downsell1">
+    <div class="downsell-modal">
+      <button class="modal-close" onclick="closeDownsell('downsell1')">×</button>
+      <h2>Final Offer: <span>Quick Start Access</span></h2>
+      <div class="downsell-price">$1</div>
+      <p>Start small with the main blueprint only. Instant digital access, one-time payment, beginner-friendly.</p>
+      <a class="btn" href="YOUR_1_DOLLAR_CHECKOUT_LINK">Get Quick Start For $1</a>
+      <br />
+      <span class="small-link" onclick="closeDownsell('downsell1')">No thanks, close this.</span>
+    </div>
+  </div>
+
+  <script>
+    let downsellStep = 0;
+    let exitTriggered = false;
+
+    function openDownsell(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeDownsell(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function showSecondDownsell() {
+      closeDownsell('downsell3');
+      downsellStep = 2;
+      openDownsell('downsell1');
+    }
+
+    document.addEventListener('mouseleave', function(e) {
+      if (e.clientY <= 0 && !exitTriggered) {
+        exitTriggered = true;
+        downsellStep = 1;
+        openDownsell('downsell3');
+      }
+    });
+
+    // Mobile fallback: show first downsell if visitor scrolls far down and then scrolls back up quickly.
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', function() {
+      const currentY = window.scrollY;
+      if (!exitTriggered && lastScrollY - currentY > 180 && currentY > 500) {
+        exitTriggered = true;
+        downsellStep = 1;
+        openDownsell('downsell3');
+      }
+      lastScrollY = currentY;
+    });
+  </script>
+</body>
+</html>
