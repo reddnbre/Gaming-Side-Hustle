@@ -396,8 +396,7 @@
   </div>
 
   <script>
-    let downsellStep = 0;
-    let exitTriggered = false;
+    let pageExitHandled = false;
 
     function openDownsell(id) {
       document.getElementById(id).classList.add('active');
@@ -407,30 +406,30 @@
       document.getElementById(id).classList.remove('active');
     }
 
+    function isDownsellOpen(id) {
+      return document.getElementById(id).classList.contains('active');
+    }
+
     function showSecondDownsell() {
       closeDownsell('downsell3');
-      downsellStep = 2;
       openDownsell('downsell1');
     }
 
+    // Exit intent only: cursor leaves toward browser tab/close (top of viewport).
     document.addEventListener('mouseleave', function(e) {
-      if (e.clientY <= 0 && !exitTriggered) {
-        exitTriggered = true;
-        downsellStep = 1;
-        openDownsell('downsell3');
-      }
-    });
+      if (e.clientY > 0) return;
 
-    // Mobile fallback: show first downsell if visitor scrolls far down and then scrolls back up quickly.
-    let lastScrollY = window.scrollY;
-    window.addEventListener('scroll', function() {
-      const currentY = window.scrollY;
-      if (!exitTriggered && lastScrollY - currentY > 180 && currentY > 500) {
-        exitTriggered = true;
-        downsellStep = 1;
+      if (isDownsellOpen('downsell1')) return;
+
+      if (isDownsellOpen('downsell3')) {
+        showSecondDownsell();
+        return;
+      }
+
+      if (!pageExitHandled) {
+        pageExitHandled = true;
         openDownsell('downsell3');
       }
-      lastScrollY = currentY;
     });
   </script>
 </body>
