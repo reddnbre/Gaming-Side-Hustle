@@ -412,6 +412,7 @@
   <script>
     let pageExitHandled = false;
     let secondExitReady = false;
+    let mobileBackTrapArmed = false;
 
     function openDownsell(id) {
       document.getElementById(id).classList.add('active');
@@ -434,6 +435,28 @@
       openDownsell('downsell1');
     }
 
+    function showFirstDownsell() {
+      if (pageExitHandled) return;
+      pageExitHandled = true;
+      openDownsell('downsell3');
+    }
+
+    function isMobileExitDevice() {
+      return window.matchMedia('(max-width: 860px)').matches || navigator.maxTouchPoints > 0;
+    }
+
+    function armMobileBackTrap() {
+      if (!isMobileExitDevice() || mobileBackTrapArmed) return;
+      mobileBackTrapArmed = true;
+      history.replaceState({ gshPage: true }, '', window.location.href);
+      history.pushState({ gshExitTrap: true }, '', window.location.href);
+    }
+
+    function rearmMobileBackTrap() {
+      if (!isMobileExitDevice()) return;
+      history.pushState({ gshExitTrap: true }, '', window.location.href);
+    }
+
     // Exit intent only: cursor leaves toward browser tab/close (top of viewport).
     document.addEventListener('mouseleave', function(e) {
       if (e.clientY > 0) return;
@@ -447,10 +470,35 @@
       }
 
       if (!pageExitHandled) {
-        pageExitHandled = true;
-        openDownsell('downsell3');
+        showFirstDownsell();
       }
     });
+
+    window.addEventListener('popstate', function() {
+      if (!isMobileExitDevice()) return;
+
+      if (isDownsellOpen('downsell1')) {
+        closeDownsell('downsell1');
+        return;
+      }
+
+      if (isDownsellOpen('downsell3')) {
+        if (secondExitReady) showSecondDownsell();
+        rearmMobileBackTrap();
+        return;
+      }
+
+      if (!pageExitHandled) {
+        showFirstDownsell();
+        rearmMobileBackTrap();
+        return;
+      }
+
+      openDownsell('downsell1');
+      rearmMobileBackTrap();
+    });
+
+    armMobileBackTrap();
   </script>
 </body>
 </html>
