@@ -414,6 +414,7 @@
     let secondExitReady = false;
     let mobileBackTrapArmed = false;
     let checkoutNavigationStarted = false;
+    let suppressExitUntil = 0;
 
     function openDownsell(id) {
       document.getElementById(id).classList.add('active');
@@ -458,9 +459,17 @@
       history.pushState({ gshExitTrap: true }, '', window.location.href);
     }
 
+    function suppressExitPopups(duration) {
+      suppressExitUntil = Date.now() + duration;
+    }
+
+    function shouldSuppressExitPopup() {
+      return checkoutNavigationStarted || Date.now() < suppressExitUntil;
+    }
+
     // Exit intent only: cursor leaves toward browser tab/close (top of viewport).
     document.addEventListener('mouseleave', function(e) {
-      if (checkoutNavigationStarted) return;
+      if (shouldSuppressExitPopup()) return;
       if (e.clientY > 0) return;
 
       if (isDownsellOpen('downsell1')) return;
@@ -477,7 +486,7 @@
     });
 
     window.addEventListener('popstate', function() {
-      if (checkoutNavigationStarted) return;
+      if (shouldSuppressExitPopup()) return;
       if (!isMobileExitDevice()) return;
 
       if (isDownsellOpen('downsell1')) {
@@ -505,13 +514,18 @@
     setTimeout(armMobileBackTrap, 500);
     setTimeout(armMobileBackTrap, 1500);
 
-    // Purchase clicks are not exit intent; never interrupt checkout navigation with a popup.
-    document.querySelectorAll('a[href*="gumroad.com"]').forEach(function(link) {
+    // Normal link/button taps are not exit intent; never interrupt them with a popup.
+    document.querySelectorAll('a[href]').forEach(function(link) {
+      const isCheckoutLink = link.href.indexOf('gumroad.com') !== -1;
+
       link.addEventListener('click', function() {
-        checkoutNavigationStarted = true;
+        suppressExitPopups(2500);
+        if (isCheckoutLink) checkoutNavigationStarted = true;
       });
+
       link.addEventListener('touchstart', function() {
-        checkoutNavigationStarted = true;
+        suppressExitPopups(2500);
+        if (isCheckoutLink) checkoutNavigationStarted = true;
       }, { passive: true });
     });
   </script>
