@@ -413,6 +413,7 @@
     let pageExitHandled = false;
     let secondExitReady = false;
     let mobileBackTrapArmed = false;
+    let mobileInteractionArmed = false;
 
     function openDownsell(id) {
       document.getElementById(id).classList.add('active');
@@ -457,6 +458,13 @@
       history.pushState({ gshExitTrap: true }, '', window.location.href);
     }
 
+    function armMobileBackTrapAfterInteraction() {
+      if (!isMobileExitDevice() || mobileInteractionArmed) return;
+      mobileInteractionArmed = true;
+      mobileBackTrapArmed = false;
+      armMobileBackTrap();
+    }
+
     // Exit intent only: cursor leaves toward browser tab/close (top of viewport).
     document.addEventListener('mouseleave', function(e) {
       if (e.clientY > 0) return;
@@ -499,6 +507,13 @@
     });
 
     armMobileBackTrap();
+    setTimeout(armMobileBackTrap, 500);
+    setTimeout(armMobileBackTrap, 1500);
+
+    // In-app browsers like Messenger often only honor history traps after a real touch/scroll.
+    window.addEventListener('touchstart', armMobileBackTrapAfterInteraction, { once: true, passive: true });
+    window.addEventListener('pointerdown', armMobileBackTrapAfterInteraction, { once: true, passive: true });
+    window.addEventListener('scroll', armMobileBackTrapAfterInteraction, { once: true, passive: true });
   </script>
 </body>
 </html>
