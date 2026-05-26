@@ -413,7 +413,7 @@
     let pageExitHandled = false;
     let secondExitReady = false;
     let mobileBackTrapArmed = false;
-    let mobileInteractionArmed = false;
+    let checkoutNavigationStarted = false;
 
     function openDownsell(id) {
       document.getElementById(id).classList.add('active');
@@ -458,15 +458,9 @@
       history.pushState({ gshExitTrap: true }, '', window.location.href);
     }
 
-    function armMobileBackTrapAfterInteraction() {
-      if (!isMobileExitDevice() || mobileInteractionArmed) return;
-      mobileInteractionArmed = true;
-      mobileBackTrapArmed = false;
-      armMobileBackTrap();
-    }
-
     // Exit intent only: cursor leaves toward browser tab/close (top of viewport).
     document.addEventListener('mouseleave', function(e) {
+      if (checkoutNavigationStarted) return;
       if (e.clientY > 0) return;
 
       if (isDownsellOpen('downsell1')) return;
@@ -483,6 +477,7 @@
     });
 
     window.addEventListener('popstate', function() {
+      if (checkoutNavigationStarted) return;
       if (!isMobileExitDevice()) return;
 
       if (isDownsellOpen('downsell1')) {
@@ -510,10 +505,15 @@
     setTimeout(armMobileBackTrap, 500);
     setTimeout(armMobileBackTrap, 1500);
 
-    // In-app browsers like Messenger often only honor history traps after a real touch/scroll.
-    window.addEventListener('touchstart', armMobileBackTrapAfterInteraction, { once: true, passive: true });
-    window.addEventListener('pointerdown', armMobileBackTrapAfterInteraction, { once: true, passive: true });
-    window.addEventListener('scroll', armMobileBackTrapAfterInteraction, { once: true, passive: true });
+    // Purchase clicks are not exit intent; never interrupt checkout navigation with a popup.
+    document.querySelectorAll('a[href*="gumroad.com"]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        checkoutNavigationStarted = true;
+      });
+      link.addEventListener('touchstart', function() {
+        checkoutNavigationStarted = true;
+      }, { passive: true });
+    });
   </script>
 </body>
 </html>
