@@ -6,7 +6,10 @@
   }
 
   function getArticles() {
-    return Array.isArray(window.GSH_ARTICLES) ? window.GSH_ARTICLES : [];
+    var batches = [window.GSH_ARTICLES_BATCH_2, window.GSH_ARTICLES];
+    return batches.reduce(function (all, batch) {
+      return Array.isArray(batch) ? all.concat(batch) : all;
+    }, []);
   }
 
   function escapeHtml(value) {
@@ -48,10 +51,10 @@
       });
     });
 
-    document.querySelectorAll('a[href*="gumroad.com"]').forEach(function (link) {
+    document.querySelectorAll('a[href*="gumroad.com"], a[href*="swagbucks.com"], a[href*="inboxdollars.com"], a[href*="mistplay.onelink.me"]').forEach(function (link) {
       link.addEventListener('click', function () {
-        window.gtag('event', 'ebook_click', {
-          event_category: 'sales',
+        window.gtag('event', 'affiliate_click', {
+          event_category: 'affiliate',
           event_label: link.href
         });
       });
