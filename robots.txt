@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /Gaming-Side-Hustle/dashboard/
 Allow: /Gaming-Side-Hustle/articles/
 Allow: /Gaming-Side-Hustle/
+
+Sitemap: https://reddnbre.github.io/Gaming-Side-Hustle/sitemap.xml
