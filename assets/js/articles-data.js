@@ -1,5 +1,115 @@
 window.GSH_ARTICLES = [
   {
+    title: 'Mistplay Beginner Guide: How To Start Earning Gift Cards',
+    description: 'Learn how Mistplay works before choosing your first reward game.',
+    url: 'mistplay-beginner-guide.html',
+    image: '../assets/main-ebook-cover-v1.png',
+    category: 'Mistplay',
+    readTime: '7 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
+    title: 'How To Earn Units On Mistplay',
+    description: 'Understand units, GXP, checkpoints, boosted games, events, referrals, and earning limits.',
+    url: 'mistplay-how-to-earn-units.html',
+    image: '../assets/main-ebook-cover-v1.png',
+    category: 'Mistplay',
+    readTime: '7 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
+    title: 'Mistplay Rewards Guide: Gift Cards, Units, And Payout Timing',
+    description: 'Learn how Mistplay reward redemption works before cashing out units.',
+    url: 'mistplay-rewards-guide.html',
+    image: '../assets/full-funnel-layout-v1.png',
+    category: 'Mistplay',
+    readTime: '6 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
+    title: 'Best Games On Mistplay For Beginners',
+    description: 'Choose Mistplay games by enjoyment, reward speed, checkpoints, time caps, and consistency.',
+    url: 'best-games-on-mistplay-for-beginners.html',
+    image: '../assets/main-ebook-cover-v1.png',
+    category: 'Mistplay',
+    readTime: '7 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
+    title: 'Mistplay Boosted Games Guide',
+    description: 'Learn what boosted games are and how to use boosted reward speed without wasting time.',
+    url: 'mistplay-boosted-games-guide.html',
+    image: '../assets/main-ebook-cover-v1.png',
+    category: 'Mistplay',
+    readTime: '6 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
+    title: 'Mistplay Loyalty Status Guide',
+    description: 'Understand Bronze, Silver, Gold, Platinum, gems, GXP boosts, unit multipliers, and status benefits.',
+    url: 'mistplay-loyalty-status-guide.html',
+    image: '../assets/main-ebook-cover-v1.png',
+    category: 'Mistplay',
+    readTime: '6 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
+    title: 'Mistplay Referral Program Guide',
+    description: 'Learn the basics of Mistplay referrals, invite bonuses, and sharing Mistplay naturally.',
+    url: 'mistplay-referral-program-guide.html',
+    image: '../assets/main-ebook-cover-v1.png',
+    category: 'Mistplay',
+    readTime: '5 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
+    title: 'Mistplay Mistakes To Avoid For Beginners',
+    description: 'Avoid common Mistplay mistakes with installs, launching games, time caps, rewards, and tracking.',
+    url: 'mistplay-mistakes-to-avoid.html',
+    image: '../assets/faq-section-image-v1.png',
+    category: 'Mistplay',
+    readTime: '7 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
+    title: 'Mistplay Tracking Checklist For Beginners',
+    description: 'Track games, GXP, units, checkpoints, reward redemptions, boosted games, and daily sessions.',
+    url: 'mistplay-tracking-checklist.html',
+    image: '../assets/full-funnel-layout-v1.png',
+    category: 'Mistplay',
+    readTime: '5 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
+    title: 'Is Mistplay Worth It For Beginners?',
+    description: 'A realistic look at Mistplay rewards, limitations, time caps, availability, and expectations.',
+    url: 'is-mistplay-worth-it.html',
+    image: '../assets/main-ebook-cover-v1.png',
+    category: 'Mistplay',
+    readTime: '7 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
+    title: 'Mistplay vs Game Offers: Which Is Better For Beginners?',
+    description: 'Compare Mistplay with milestone-based game offer walls for beginner reward gamers.',
+    url: 'mistplay-vs-game-offers.html',
+    image: '../assets/full-funnel-layout-v1.png',
+    category: 'Comparisons',
+    readTime: '7 min read',
+    date: 'August 3, 2026',
+    status: 'Published'
+  },
+  {
     title: 'RollerCoin Best Miners For Beginners',
     description: 'Choose RollerCoin miners by power, bonus, rack fit, marketplace value, and upgrade potential.',
     url: 'rollercoin-best-miners-for-beginners.html',
