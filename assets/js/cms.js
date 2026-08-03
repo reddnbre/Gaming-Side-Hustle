@@ -3,6 +3,41 @@
     return (value || '').toString().trim().toLowerCase();
   }
 
+  function getArticles() {
+    return Array.isArray(window.GSH_ARTICLES) ? window.GSH_ARTICLES : [];
+  }
+
+  function escapeHtml(value) {
+    return (value || '').toString().replace(/[&<>'"]/g, function (character) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[character];
+    });
+  }
+
+  function renderArticleCards() {
+    var grid = document.querySelector('[data-articles-grid]');
+    if (!grid) return;
+
+    var articles = getArticles();
+    if (!articles.length) return;
+
+    grid.innerHTML = articles.map(function (article) {
+      return '<article class="article-card" data-article-card data-title="' + escapeHtml(article.title) + '" data-description="' + escapeHtml(article.description) + '" data-category="' + escapeHtml(article.category) + '">' +
+        '<a href="' + escapeHtml(article.url) + '"><img src="' + escapeHtml(article.image) + '" alt="' + escapeHtml(article.title) + '" /></a>' +
+        '<div class="article-card-body">' +
+          '<div class="meta"><span class="category">' + escapeHtml(article.category) + '</span><span>' + escapeHtml(article.readTime) + '</span></div>' +
+          '<h2><a href="' + escapeHtml(article.url) + '">' + escapeHtml(article.title) + '</a></h2>' +
+          '<p>' + escapeHtml(article.description) + '</p>' +
+        '</div>' +
+      '</article>';
+    }).join('');
+  }
+
   function setupArticleSearch() {
     var search = document.querySelector('[data-article-search]');
     var category = document.querySelector('[data-category-filter]');
@@ -39,6 +74,31 @@
     applyFilters();
   }
 
+  function setupDashboardData() {
+    var articles = getArticles();
+    if (!articles.length) return;
+
+    var total = document.querySelector('[data-total-articles]');
+    var draftTotal = document.querySelector('[data-draft-articles]');
+    var recent = document.querySelector('[data-recent-articles]');
+    var top = document.querySelector('[data-top-articles]');
+
+    if (total) total.textContent = articles.filter(function (article) { return article.status === 'Published'; }).length;
+    if (draftTotal) draftTotal.textContent = articles.filter(function (article) { return article.status === 'Draft'; }).length;
+
+    if (recent) {
+      recent.innerHTML = articles.slice(0, 5).map(function (article) {
+        return '<tr><td><a href="../articles/' + escapeHtml(article.url) + '">' + escapeHtml(article.title) + '</a></td><td><span class="status-pill">' + escapeHtml(article.status) + '</span></td><td>' + escapeHtml(article.date) + '</td></tr>';
+      }).join('');
+    }
+
+    if (top) {
+      top.innerHTML = articles.slice(0, 5).map(function (article) {
+        return '<tr><td><a href="../articles/' + escapeHtml(article.url) + '">' + escapeHtml(article.title) + '</a></td><td>--</td><td>--</td></tr>';
+      }).join('');
+    }
+  }
+
   function setupGeneratedToc() {
     var toc = document.querySelector('[data-generated-toc]');
     var content = document.querySelector('[data-article-content]');
@@ -61,7 +121,9 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    renderArticleCards();
     setupArticleSearch();
+    setupDashboardData();
     setupGeneratedToc();
   });
 }());
