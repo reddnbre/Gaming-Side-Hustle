@@ -42,7 +42,7 @@
         '<': '&lt;',
         '>': '&gt;',
         "'": '&#39;',
-        '\"': '&quot;'
+        '"': '&quot;'
       }[character];
     });
   }
@@ -187,14 +187,16 @@
 
   function getPageOffers() {
     var pageKey = normalize(location.pathname + ' ' + document.title);
-    return platformOffers.filter(function (offer) {
+    var matches = platformOffers.filter(function (offer) {
       return pageKey.indexOf(offer.key) !== -1;
     });
+
+    return matches.length ? matches : platformOffers;
   }
 
   function buildOfferBlock(offers) {
-    var title = offers.length > 1 ? 'Try These Reward Platforms' : 'Try ' + offers[0].label;
-    var intro = offers.length > 1 ? 'This comparison mentions more than one platform. Use the buttons below to open the one you want to try.' : offers[0].text;
+    var title = offers.length > 1 ? 'Recommended Reward Platforms' : 'Try ' + offers[0].label;
+    var intro = offers.length > 1 ? 'Want a reward option from this guide? Use one of these buttons to open a recommended platform.' : offers[0].text;
 
     return '<div class="content-box platform-cta" data-platform-cta>' +
       '<h2>' + escapeHtml(title) + '</h2>' +
@@ -210,10 +212,7 @@
     var quickAnswer = document.querySelector('.quick-answer');
     if (!articleMain || !quickAnswer || document.querySelector('[data-platform-cta]')) return;
 
-    var offers = getPageOffers();
-    if (!offers.length) return;
-
-    quickAnswer.insertAdjacentHTML('afterend', buildOfferBlock(offers));
+    quickAnswer.insertAdjacentHTML('afterend', buildOfferBlock(getPageOffers()));
   }
 
   initAnalytics();
