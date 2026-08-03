@@ -1,5 +1,28 @@
 (function () {
   var measurementId = 'G-6XMHDM9G46';
+  var platformOffers = [
+    {
+      key: 'swagbucks',
+      label: 'Swagbucks',
+      href: 'https://www.swagbucks.com/profile/reddnbre?rp=1',
+      button: 'Start Swagbucks',
+      text: 'Earn SB through eligible games, surveys, shopping, receipts, and other reward activities.'
+    },
+    {
+      key: 'inboxdollars',
+      label: 'InboxDollars',
+      href: 'https://www.inboxdollars.com/?rb=4X8m1qv4js1hh1Fl&rp=1',
+      button: 'Start InboxDollars',
+      text: 'Try cash-based rewards through eligible games, surveys, offers, paid emails, and more.'
+    },
+    {
+      key: 'mistplay',
+      label: 'Mistplay',
+      href: 'https://mistplay.onelink.me/ZGRQ/0vlgrca7',
+      button: 'Start Mistplay',
+      text: 'Play eligible mobile games, earn units, and redeem rewards through Mistplay.'
+    }
+  ];
 
   function normalize(value) {
     return (value || '').toString().trim().toLowerCase();
@@ -13,13 +36,13 @@
   }
 
   function escapeHtml(value) {
-    return (value || '').toString().replace(/[&<>'"]/g, function (character) {
+    return (value || '').toString().replace(/[&<>'\"]/g, function (character) {
       return {
         '&': '&amp;',
         '<': '&lt;',
         '>': '&gt;',
         "'": '&#39;',
-        '"': '&quot;'
+        '\"': '&quot;'
       }[character];
     });
   }
@@ -162,12 +185,44 @@
     toc.appendChild(list);
   }
 
+  function getPageOffers() {
+    var pageKey = normalize(location.pathname + ' ' + document.title);
+    return platformOffers.filter(function (offer) {
+      return pageKey.indexOf(offer.key) !== -1;
+    });
+  }
+
+  function buildOfferBlock(offers) {
+    var title = offers.length > 1 ? 'Try These Reward Platforms' : 'Try ' + offers[0].label;
+    var intro = offers.length > 1 ? 'This comparison mentions more than one platform. Use the buttons below to open the one you want to try.' : offers[0].text;
+
+    return '<div class="content-box platform-cta" data-platform-cta>' +
+      '<h2>' + escapeHtml(title) + '</h2>' +
+      '<p>' + escapeHtml(intro) + '</p>' +
+      '<div class="platform-cta-actions">' + offers.map(function (offer) {
+        return '<a class="btn" href="' + escapeHtml(offer.href) + '" rel="nofollow sponsored noopener" target="_blank">' + escapeHtml(offer.button) + '</a>';
+      }).join('') + '</div>' +
+    '</div>';
+  }
+
+  function setupPlatformCtas() {
+    var articleMain = document.querySelector('.article-main');
+    var quickAnswer = document.querySelector('.quick-answer');
+    if (!articleMain || !quickAnswer || document.querySelector('[data-platform-cta]')) return;
+
+    var offers = getPageOffers();
+    if (!offers.length) return;
+
+    quickAnswer.insertAdjacentHTML('afterend', buildOfferBlock(offers));
+  }
+
   initAnalytics();
 
   document.addEventListener('DOMContentLoaded', function () {
     renderArticleCards();
     setupArticleSearch();
     setupDashboardData();
+    setupPlatformCtas();
     setupGeneratedToc();
     setupAnalyticsEvents();
   });
