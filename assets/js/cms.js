@@ -1,4 +1,6 @@
 (function () {
+  var measurementId = 'G-6XMHDM9G46';
+
   function normalize(value) {
     return (value || '').toString().trim().toLowerCase();
   }
@@ -16,6 +18,43 @@
         "'": '&#39;',
         '"': '&quot;'
       }[character];
+    });
+  }
+
+  function initAnalytics() {
+    if (location.pathname.indexOf('/dashboard/') !== -1) return;
+    if (window.gtag) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId);
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+    document.head.appendChild(script);
+  }
+
+  function setupAnalyticsEvents() {
+    if (!window.gtag || location.pathname.indexOf('/dashboard/') !== -1) return;
+
+    document.querySelectorAll('a[href*="#pricing"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        window.gtag('event', 'article_cta_click', {
+          event_category: 'engagement',
+          event_label: document.title
+        });
+      });
+    });
+
+    document.querySelectorAll('a[href*="gumroad.com"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        window.gtag('event', 'ebook_click', {
+          event_category: 'sales',
+          event_label: link.href
+        });
+      });
     });
   }
 
@@ -120,10 +159,13 @@
     toc.appendChild(list);
   }
 
+  initAnalytics();
+
   document.addEventListener('DOMContentLoaded', function () {
     renderArticleCards();
     setupArticleSearch();
     setupDashboardData();
     setupGeneratedToc();
+    setupAnalyticsEvents();
   });
 }());
