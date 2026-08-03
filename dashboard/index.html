@@ -7,78 +7,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <meta name="description" content="Private publishing dashboard placeholder for The Gaming Side Hustle Blueprint content system." />
   <link rel="stylesheet" href="../assets/css/cms.css" />
-  <style>
-    .dashboard-lock {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
-
-    .lock-card {
-      width: min(520px, 100%);
-      border: 1px solid rgba(168, 255, 0, .3);
-      background: linear-gradient(180deg, rgba(13, 26, 13, .95), rgba(3, 5, 3, .95));
-      border-radius: 24px;
-      padding: 30px;
-      box-shadow: 0 0 45px rgba(168, 255, 0, .2), inset 0 0 22px rgba(168, 255, 0, .05);
-    }
-
-    .lock-card h1 {
-      font-size: clamp(32px, 6vw, 54px);
-      line-height: .96;
-      text-transform: uppercase;
-      letter-spacing: -1px;
-      margin: 18px 0 12px;
-    }
-
-    .lock-card h1 span { color: #a8ff00; }
-
-    .lock-card p {
-      color: #c8d2c1;
-      margin-bottom: 22px;
-    }
-
-    .passcode-form {
-      display: grid;
-      gap: 12px;
-    }
-
-    .passcode-form label {
-      color: #eef6e8;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      font-size: 13px;
-    }
-
-    .passcode-form input {
-      min-height: 52px;
-      border: 1px solid rgba(168, 255, 0, .25);
-      border-radius: 14px;
-      background: rgba(3, 5, 3, .72);
-      color: #fff;
-      padding: 0 14px;
-      font: inherit;
-      outline: none;
-    }
-
-    .passcode-form input:focus {
-      border-color: #a8ff00;
-      box-shadow: 0 0 20px rgba(168, 255, 0, .14);
-    }
-
-    .lock-error {
-      min-height: 22px;
-      color: #fff5bf;
-      font-weight: 800;
-    }
-
-    [data-dashboard-content][hidden],
-    [data-dashboard-lock][hidden] {
-      display: none !important;
-    }
-  </style>
+  <style>.dashboard-lock{min-height:100vh;display:grid;place-items:center;padding:24px}.lock-card{width:min(520px,100%);border:1px solid rgba(168,255,0,.3);background:linear-gradient(180deg,rgba(13,26,13,.95),rgba(3,5,3,.95));border-radius:24px;padding:30px;box-shadow:0 0 45px rgba(168,255,0,.2),inset 0 0 22px rgba(168,255,0,.05)}.lock-card h1{font-size:clamp(32px,6vw,54px);line-height:.96;text-transform:uppercase;letter-spacing:-1px;margin:18px 0 12px}.lock-card h1 span{color:#a8ff00}.lock-card p{color:#c8d2c1;margin-bottom:22px}.passcode-form{display:grid;gap:12px}.passcode-form label{color:#eef6e8;font-weight:900;text-transform:uppercase;letter-spacing:.06em;font-size:13px}.passcode-form input{min-height:52px;border:1px solid rgba(168,255,0,.25);border-radius:14px;background:rgba(3,5,3,.72);color:#fff;padding:0 14px;font:inherit;outline:none}.passcode-form input:focus{border-color:#a8ff00;box-shadow:0 0 20px rgba(168,255,0,.14)}.lock-error{min-height:22px;color:#fff5bf;font-weight:800}[data-dashboard-content][hidden],[data-dashboard-lock][hidden]{display:none!important}</style>
 </head>
 <body>
   <main class="cms-page">
@@ -97,107 +26,26 @@
     </section>
 
     <div data-dashboard-content hidden>
-      <header class="site-header">
-        <div class="container nav">
-          <a class="brand" href="../index.html">Gaming Side Hustle <span>Dashboard</span></a>
-          <nav class="nav-links" aria-label="Primary navigation">
-            <a href="../index.html">Home</a>
-            <a href="../articles/">Articles</a>
-            <a href="../index.html#pricing">Sales Page</a>
-          </nav>
-        </div>
-      </header>
-
-      <section class="hero">
-        <div class="container">
-          <span class="badge">Private CMS V1</span>
-          <h1>Publishing <span>Dashboard</span></h1>
-          <p class="hero-copy">A static GitHub Pages-compatible dashboard shell for content tracking, SEO checks, article planning, and future analytics.</p>
-        </div>
-      </section>
-
-      <section>
-        <div class="container dashboard-grid">
-          <article class="metric-card">
-            <h2>Total Articles</h2>
-            <div class="metric-value">0</div>
-            <p class="metric-note">Ready for published article counts.</p>
-          </article>
-
-          <article class="metric-card">
-            <h2>Visitors Today</h2>
-            <div class="metric-value">--</div>
-            <p class="metric-note">Analytics placeholder.</p>
-          </article>
-
-          <article class="metric-card">
-            <h2>Visitors This Month</h2>
-            <div class="metric-value">--</div>
-            <p class="metric-note">Analytics placeholder.</p>
-          </article>
-
-          <article class="metric-card">
-            <h2>Total Visitors</h2>
-            <div class="metric-value">--</div>
-            <p class="metric-note">Analytics placeholder.</p>
-          </article>
-
-          <article class="metric-card">
-            <h2>Ebook Clicks</h2>
-            <div class="metric-value">--</div>
-            <p class="metric-note">CTA tracking will connect later.</p>
-          </article>
-
-          <article class="metric-card">
-            <h2>SEO Health</h2>
-            <div class="metric-value">--</div>
-            <p class="metric-note">Future schema, title, and meta checks.</p>
-          </article>
-
-          <article class="metric-card">
-            <h2>Draft Articles</h2>
-            <div class="metric-value">0</div>
-            <p class="metric-note">Draft queue placeholder.</p>
-          </article>
-
-          <article class="metric-card">
-            <h2>CMS Status</h2>
-            <div class="metric-value">V1</div>
-            <p class="metric-note">Static publishing shell active.</p>
-          </article>
-
-          <article class="metric-card wide-card">
-            <h2>Top Articles</h2>
-            <table class="list-table">
-              <thead><tr><th>Article</th><th>Views</th><th>Clicks</th></tr></thead>
-              <tbody>
-                <tr><td>Waiting for analytics</td><td>--</td><td>--</td></tr>
-                <tr><td>Waiting for analytics</td><td>--</td><td>--</td></tr>
-                <tr><td>Waiting for analytics</td><td>--</td><td>--</td></tr>
-              </tbody>
-            </table>
-          </article>
-
-          <article class="metric-card wide-card">
-            <h2>Recent Articles</h2>
-            <table class="list-table">
-              <thead><tr><th>Title</th><th>Status</th><th>Date</th></tr></thead>
-              <tbody>
-                <tr><td>Reward Gaming Beginner Guide</td><td><span class="status-pill">Planned</span></td><td>--</td></tr>
-                <tr><td>RollerCoin Merge Strategy</td><td><span class="status-pill">Idea</span></td><td>--</td></tr>
-                <tr><td>Offer Tracking Checklist</td><td><span class="status-pill">Idea</span></td><td>--</td></tr>
-              </tbody>
-            </table>
-          </article>
-        </div>
-      </section>
-
-      <footer>
-        <div class="container">© The Gaming Side Hustle Blueprint. Private dashboard placeholder. Analytics not implemented.</div>
-      </footer>
+      <header class="site-header"><div class="container nav"><a class="brand" href="../index.html">Gaming Side Hustle <span>Dashboard</span></a><nav class="nav-links" aria-label="Primary navigation"><a href="../index.html">Home</a><a href="../articles/">Articles</a><a href="../index.html#pricing">Sales Page</a></nav></div></header>
+      <section class="hero"><div class="container"><span class="badge">Private CMS V1</span><h1>Publishing <span>Dashboard</span></h1><p class="hero-copy">A static GitHub Pages-compatible dashboard shell for content tracking, SEO checks, article planning, and future analytics.</p></div></section>
+      <section><div class="container dashboard-grid">
+        <article class="metric-card"><h2>Total Articles</h2><div class="metric-value" data-total-articles>0</div><p class="metric-note">Auto-counted from articles-data.js.</p></article>
+        <article class="metric-card"><h2>Visitors Today</h2><div class="metric-value">--</div><p class="metric-note">Analytics placeholder.</p></article>
+        <article class="metric-card"><h2>Visitors This Month</h2><div class="metric-value">--</div><p class="metric-note">Analytics placeholder.</p></article>
+        <article class="metric-card"><h2>Total Visitors</h2><div class="metric-value">--</div><p class="metric-note">Analytics placeholder.</p></article>
+        <article class="metric-card"><h2>Ebook Clicks</h2><div class="metric-value">--</div><p class="metric-note">CTA tracking will connect later.</p></article>
+        <article class="metric-card"><h2>SEO Health</h2><div class="metric-value">OK</div><p class="metric-note">Basic SEO template active.</p></article>
+        <article class="metric-card"><h2>Draft Articles</h2><div class="metric-value" data-draft-articles>0</div><p class="metric-note">Auto-counted from articles-data.js.</p></article>
+        <article class="metric-card"><h2>CMS Status</h2><div class="metric-value">V1</div><p class="metric-note">Static publishing shell active.</p></article>
+        <article class="metric-card wide-card"><h2>Top Articles</h2><table class="list-table"><thead><tr><th>Article</th><th>Views</th><th>Clicks</th></tr></thead><tbody data-top-articles><tr><td>Waiting for article data</td><td>--</td><td>--</td></tr></tbody></table></article>
+        <article class="metric-card wide-card"><h2>Recent Articles</h2><table class="list-table"><thead><tr><th>Title</th><th>Status</th><th>Date</th></tr></thead><tbody data-recent-articles><tr><td>Waiting for article data</td><td><span class="status-pill">Pending</span></td><td>--</td></tr></tbody></table></article>
+      </div></section>
+      <footer><div class="container">© The Gaming Side Hustle Blueprint. Private dashboard placeholder. Analytics not implemented.</div></footer>
     </div>
   </main>
 
+  <script src="../assets/js/articles-data.js"></script>
+  <script src="../assets/js/cms.js"></script>
   <script>
     (function () {
       var dashboardPasscode = 'Blueprint2026!';
