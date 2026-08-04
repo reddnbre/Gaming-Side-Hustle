@@ -3,5 +3,5 @@ Disallow: /dashboard/
 Allow: /articles/
 Allow: /
 
-Sitemap: https://gaming.revtrafficexchange.com/sitemap.xml
-Sitemap: https://gaming.revtrafficexchange.com/sitemap.txt
+Sitemap: https://gaming.revtrafficxchange.com/sitemap.xml
+Sitemap: https://gaming.revtrafficxchange.com/sitemap.txt
