@@ -1,7 +1,7 @@
 User-agent: *
-Disallow: /Gaming-Side-Hustle/dashboard/
-Allow: /Gaming-Side-Hustle/articles/
-Allow: /Gaming-Side-Hustle/
+Disallow: /dashboard/
+Allow: /articles/
+Allow: /
 
-Sitemap: https://reddnbre.github.io/Gaming-Side-Hustle/sitemap.xml
-Sitemap: https://reddnbre.github.io/Gaming-Side-Hustle/sitemap.txt
+Sitemap: https://gaming.revtrafficexchange.com/sitemap.xml
+Sitemap: https://gaming.revtrafficexchange.com/sitemap.txt
