@@ -29,7 +29,7 @@
   }
 
   function getArticles() {
-    var batches = [window.GSH_ARTICLES_BATCH_2, window.GSH_ARTICLES];
+    var batches = [window.GSH_ARTICLES_BATCH_3, window.GSH_ARTICLES_BATCH_2, window.GSH_ARTICLES];
     return batches.reduce(function (all, batch) {
       return Array.isArray(batch) ? all.concat(batch) : all;
     }, []);
