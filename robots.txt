@@ -5,3 +5,4 @@ Allow: /
 
 Sitemap: https://gaming.revtrafficxchange.com/sitemap.xml
 Sitemap: https://gaming.revtrafficxchange.com/sitemap.txt
+Sitemap: https://gaming.revtrafficxchange.com/sitemap-make-money-gaming.xml
