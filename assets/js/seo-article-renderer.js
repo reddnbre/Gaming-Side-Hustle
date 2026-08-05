@@ -5,10 +5,6 @@
     });
   }
 
-  function slugify(value) {
-    return (value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  }
-
   function getArticles() {
     return Array.isArray(window.GSH_ARTICLES_BATCH_3) ? window.GSH_ARTICLES_BATCH_3 : [];
   }
@@ -84,20 +80,21 @@
     if (canonicalLink) canonicalLink.setAttribute('href', canonical);
 
     var articleSections = sections(article);
-    var schema = { '@context': 'https://schema.org', '@type': 'Article', headline: article.title, description: article.description, image: article.image, author: { '@type': 'Organization', name: 'Gaming Side Hustle Blueprint' }, datePublished: '2026-08-05', dateModified: '2026-08-05', mainEntityOfPage: canonical };
+    var schema = { '@context': 'https://schema.org', '@type': 'Article', headline: article.title, description: article.description, image: article.image, author: { '@type': 'Organization', name: 'Gaming Side Hustle Blueprint' }, publisher: { '@type': 'Organization', name: 'The Gaming Side Hustle Blueprint' }, datePublished: '2026-08-05', dateModified: '2026-08-05', articleSection: article.category, mainEntityOfPage: { '@type': 'WebPage', '@id': canonical } };
     var schemaTag = document.createElement('script');
     schemaTag.type = 'application/ld+json';
     schemaTag.text = JSON.stringify(schema);
     document.head.appendChild(schemaTag);
 
     document.querySelector('[data-seo-article]').innerHTML = '<header class="site-header"><div class="container nav"><a class="brand" href="../index.html">Gaming Side Hustle <span>Blueprint</span></a><nav class="nav-links" aria-label="Primary navigation"><a href="../index.html">Home</a><a href="../articles/">Articles</a><a class="btn btn-secondary" href="../index.html#pricing">Get Blueprint</a></nav></div></header>' +
-      '<section class="article-hero"><div class="container"><nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="../articles/">Articles</a><span>/</span><span>' + esc(article.category) + '</span></nav><span class="badge">' + esc(article.category) + '</span><h1>' + esc(article.title) + '</h1><p class="hero-copy">' + esc(article.description) + '</p><div class="article-meta"><span>Gaming Side Hustle Team</span><span>' + esc(article.date) + '</span><span>' + esc(article.readTime) + '</span></div><img class="featured-image" src="' + esc(article.image) + '" alt="' + esc(article.title) + '"></div></section>' +
-      '<section><div class="container article-layout"><article class="article-main"><div class="quick-answer"><h2>Quick Answer</h2><p>' + esc(quickAnswer(article)) + '</p></div><div data-article-content>' +
+      '<article><section class="article-hero"><div class="container"><nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="../articles/">Articles</a><span>/</span><span>' + esc(article.category) + '</span></nav><span class="eyebrow">' + esc(article.category) + '</span><h1>' + esc(article.title) + '</h1><p class="subhead">' + esc(article.description) + '</p><div class="article-byline"><span>By Gaming Side Hustle Blueprint</span><span>' + esc(article.date) + '</span><span>' + esc(article.readTime) + '</span></div></div></section>' +
+      '<section><div class="container"><div class="featured-frame"><img src="' + esc(article.image) + '" alt="' + esc(article.title) + '"></div></div></section>' +
+      '<section><div class="container article-shell"><div class="article-main"><div class="content-box quick-answer"><h2>Quick Answer</h2><p>' + esc(quickAnswer(article)) + '</p></div><div class="article-body" data-article-content>' +
       articleSections.map(function (section) { return '<h2 id="' + esc(section[0]) + '">' + esc(section[1]) + '</h2><p>' + esc(section[2]) + '</p>'; }).join('') +
-      '<h2 id="sources-used">Sources Used</h2><ul>' + sourceList(article).map(function (source) { return '<li><a href="' + esc(source[1]) + '" target="_blank" rel="noopener nofollow">' + esc(source[0]) + '</a></li>'; }).join('') + '</ul>' +
-      '<h2 id="faq">FAQ</h2>' + faq(article).map(function (item) { return '<div class="faq-item"><h3>' + esc(item[0]) + '</h3><p>' + esc(item[1]) + '</p></div>'; }).join('') +
-      '<h2 id="related-articles">Related Articles</h2><div class="related-grid">' + related(article).map(function (item) { return '<a class="related-card" href="' + esc(item.url) + '"><span>' + esc(item.category) + ' ' + esc(item.readTime) + '</span><strong>' + esc(item.title) + '</strong><p>' + esc(item.description) + '</p></a>'; }).join('') + '</div>' +
-      '</div><div class="content-box blueprint-cta"><h2>The Gaming Side Hustle Blueprint</h2><p>Get the beginner system, tracking checklists, and offer planning workflow built for reward gaming.</p><a class="btn" href="../index.html#pricing">Get The Blueprint</a></div></article><aside class="toc-card"><h2>Table Of Contents</h2><nav data-generated-toc></nav></aside></div></section><footer><div class="container">&copy; The Gaming Side Hustle Blueprint. Educational digital product. Results vary.</div></footer>';
+      '<h2 id="sources-used">Sources Used</h2><ul>' + sourceList(article).map(function (source) { return '<li><a href="' + esc(source[1]) + '" target="_blank" rel="noopener nofollow">' + esc(source[0]) + '</a></li>'; }).join('') + '</ul></div>' +
+      '<section class="content-box" aria-labelledby="faq-title"><h2 id="faq-title">FAQ</h2><div class="faq-list">' + faq(article).map(function (item) { return '<div class="faq-item"><h3>' + esc(item[0]) + '</h3><p>' + esc(item[1]) + '</p></div>'; }).join('') + '</div></section>' +
+      '<section class="content-box" aria-labelledby="related-title"><h2 id="related-title">Related Articles</h2><div class="related-grid">' + related(article).map(function (item) { return '<article class="article-card"><div class="article-card-body"><div class="meta"><span class="category">' + esc(item.category) + '</span><span>' + esc(item.readTime) + '</span></div><h3><a href="' + esc(item.url) + '">' + esc(item.title) + '</a></h3><p>' + esc(item.description) + '</p></div></article>'; }).join('') + '</div></section>' +
+      '<section><div class="cta-band"><div><h2>The Gaming Side Hustle Blueprint</h2><p class="section-subtitle">Get the beginner system, tracking checklists, and offer planning workflow built for reward gaming.</p></div><a class="btn" href="../index.html#pricing">Get The Blueprint</a></div></section></div><aside class="toc" aria-labelledby="toc-title"><h2 id="toc-title">Table of Contents</h2><div data-generated-toc></div></aside></div></section></article><footer><div class="container">&copy; The Gaming Side Hustle Blueprint. Educational digital product. Results vary.</div></footer>';
   }
 
   document.addEventListener('DOMContentLoaded', function () {
